@@ -1,1 +1,2 @@
-This is a default readme that is created by the htmlinit command
+## drones
+You can try out the demo here: https://martian17.github.io/drones/
