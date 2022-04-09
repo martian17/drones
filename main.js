@@ -23,12 +23,13 @@ let DragHandler = function(area){
         that.down = true;
         x0 = e.clientX;
         y0 = e.clientY;
+        console.log("dragstart",x0,y0,e);
         that.t0 = Date.now();
         that.vx = 0;
         that.vy = 0;
         
         that.x = x0;
-        that.x = y0;
+        that.y = y0;
     };
     let onDrag = function(e) {
         e.preventDefault();
@@ -48,8 +49,8 @@ let DragHandler = function(area){
         y0 = y;
         that.t0 = t;
         
-        this.x = x0;
-        this.x = y0;
+        that.x = x0;
+        that.y = y0;
     };
     let onDragEnd = function(e) {
         e.preventDefault();
@@ -59,6 +60,26 @@ let DragHandler = function(area){
     canvas.addEventListener("mousedown", onDragStart);
     document.body.addEventListener("mousemove", onDrag);
     document.body.addEventListener("mouseup", onDragEnd);
+    
+    canvas.addEventListener("touchstart", (e)=>{
+        onDragStart({
+            clientX: e.touches[0].clientX,
+            clientY: e.touches[0].clientY,
+            preventDefault:()=>{}
+        });
+    });
+    document.body.addEventListener("touchmove", (e)=>{
+        onDrag({
+            clientX: e.touches[0].clientX,
+            clientY: e.touches[0].clientY,
+            preventDefault:()=>{}
+        });
+    });
+    document.body.addEventListener("touchend", (e)=>{
+        onDragEnd({
+            preventDefault:()=>{}
+        });
+    });
 };
 
 
