@@ -65,21 +65,21 @@ let DragHandler = function(area){
         onDragStart({
             clientX: e.touches[0].clientX,
             clientY: e.touches[0].clientY,
-            preventDefault:()=>{}
+            preventDefault:e.preventDefault.bind(e)
         });
-    });
+    },{passive: false});
     document.body.addEventListener("touchmove", (e)=>{
         onDrag({
             clientX: e.touches[0].clientX,
             clientY: e.touches[0].clientY,
-            preventDefault:()=>{}
+            preventDefault:e.preventDefault.bind(e)
         });
-    });
+    },{passive: false});
     document.body.addEventListener("touchend", (e)=>{
         onDragEnd({
-            preventDefault:()=>{}
+            preventDefault:e.preventDefault.bind(e)
         });
-    });
+    },{passive: false});
 };
 
 
